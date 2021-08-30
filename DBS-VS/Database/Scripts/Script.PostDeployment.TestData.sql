@@ -9,6 +9,14 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+if '$(DeployTestData)' = 'true'
+
+BEGIN
+
+
+delete from Assignment;
+delete from Employee;
+delete from Office;
 /*Employee */
 INSERT INTO Employee(StaffID, GivenName, Surname) valUES
 (1, 'Fred', 'Boy'),
@@ -23,3 +31,5 @@ INSERT INTO Office(LocCode, Address, Description) VALUES
 INSERT INTO Assignment(StaffID, LocCode, DateAssigned) VALUES 
 (1, 101, CONVERT(DATE, '10/25/2020', 101)),
 (2, 102, CONVERT(DATE, '10/15/2020', 101));
+
+END;
